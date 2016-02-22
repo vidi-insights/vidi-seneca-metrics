@@ -1,10 +1,6 @@
-# vidi-seneca-metrics
-Generate and map metrics from Seneca
-
 ![Banner][]
 
-# vidi-influx-sink
-
+# vidi-seneca-metrics
 - __Lead Maintainer:__ [Dean McDonnell][Lead]
 - __Sponsor:__ [nearForm][Sponsor]
 
@@ -41,9 +37,7 @@ locally and run,
 npm install; npm run demo
 ```
 
-The demo runs in collector mode and tracks any data emitted by toolbag to it's default port. It makes a
-great springboard for a custom micro-service tailored to your needs. Check the [Org][] for additional
-plugins that can be dropped in to add more functionality.
+The demo runs emits seneca messages on regular intervals and prints the mapped results to screen.
 
 ## Options
 
@@ -52,20 +46,23 @@ plugins that can be dropped in to add more functionality.
   // The name the plugin is registered with
   plugin: 'vidi-seneca-metrics',
 
-  // The role that is used when adding the sink
+  // The role to use when acting and adding actions
   role: 'metrics',
 
-  // Batch save settings
-  batch: {
-    // Max per batch before write
-    max: 5,
+  // A group to assign to emitted metrics
+  group: '',
 
-    // Force write timeout
-    timeout: 500,
-  },
+  // A tag to assign to emitted metrics
+  tag: '',
 
-  // The plugin will disable on InfluxDb Error
-  enabled: true
+  // A pid to assign to emitted metrics
+  pid: process.pid,
+
+  // The size of the rolling stats
+  size: 9999,
+
+  // The interval to calculate rolling stats
+  interval: 1000
 }
 
 ```
@@ -90,3 +87,4 @@ Licensed under [MIT][].
 [MIT]: ./LICENSE
 
 [Toolbag]: https://github.com/continuationlabs/toolbag
+[Seneca]: http://senecajs.org
