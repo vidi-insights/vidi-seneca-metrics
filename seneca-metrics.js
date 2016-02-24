@@ -50,7 +50,7 @@ function emit (msg, done) {
     })
   })
 
-  if (_.empty(pins)) {
+  if (_.isEmpty(pins)) {
     return done(null, [])
   }
 
