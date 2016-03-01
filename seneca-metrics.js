@@ -50,6 +50,10 @@ function emit (msg, done) {
     })
   })
 
+  if (_.isEmpty(pins)) {
+    return done(null, [])
+  }
+
   done(null, [{
     source: 'seneca-metrics',
     payload: {
